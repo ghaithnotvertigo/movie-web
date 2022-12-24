@@ -22,7 +22,12 @@ import { useTranslation } from "react-i18next";
 
 function SearchLoading() {
   const { t } = useTranslation();
-  return <Loading className="my-24" text={t('search.loading') || "Fetching your favourite shows..."} />;
+  return (
+    <Loading
+      className="my-24"
+      text={t("search.loading") || "Fetching your favourite shows..."}
+    />
+  );
 }
 
 function SearchSuffix(props: {
@@ -47,13 +52,16 @@ function SearchSuffix(props: {
         <div>
           {props.fails > 0 ? (
             <p className="text-red-400">
-              {t('search.providersFailed', { fails: props.fails, total: props.total })}
+              {t("search.providersFailed", {
+                fails: props.fails,
+                total: props.total,
+              })}
             </p>
           ) : null}
           {props.resultsSize > 0 ? (
-            <p>{t('search.allResults')}</p>
+            <p>{t("search.allResults")}</p>
           ) : (
-            <p>{t('search.noResults')}</p>
+            <p>{t("search.noResults")}</p>
           )}
         </div>
       ) : null}
@@ -61,7 +69,7 @@ function SearchSuffix(props: {
       {/* Error result */}
       {allFailed ? (
         <div>
-          <p>{t('search.allFailed')}</p>
+          <p>{t("search.allFailed")}</p>
         </div>
       ) : null}
     </div>
@@ -97,9 +105,9 @@ function SearchResultsView({
       {/* results */}
       {success && results?.results.length ? (
         <SectionHeading
-          title={t('search.headingTitle') || "Search results"}
+          title={t("search.headingTitle") || "Search results"}
           icon={Icons.SEARCH}
-          linkText={t('search.headingLink') || "Back to home"}
+          linkText={t("search.headingLink") || "Back to home"}
           onClick={() => clear()}
         >
           {results.results.map((v) => (
@@ -146,7 +154,10 @@ function ExtraItems() {
   return (
     <div className="mb-16 mt-32">
       {bookmarks.length > 0 ? (
-        <SectionHeading title={t('search.bookmarks') || "Bookmarks"} icon={Icons.BOOKMARK}>
+        <SectionHeading
+          title={t("search.bookmarks") || "Bookmarks"}
+          icon={Icons.BOOKMARK}
+        >
           {bookmarks.map((v) => (
             <WatchedMediaCard
               key={[v.mediaId, v.providerId].join("|")}
@@ -156,7 +167,10 @@ function ExtraItems() {
         </SectionHeading>
       ) : null}
       {watchedItems.length > 0 ? (
-        <SectionHeading title={t('search.continueWatching') || "Continue Watching"} icon={Icons.CLOCK}>
+        <SectionHeading
+          title={t("search.continueWatching") || "Continue Watching"}
+          icon={Icons.CLOCK}
+        >
           {watchedItems.map((v) => (
             <WatchedMediaCard
               key={[v.mediaId, v.providerId].join("|")}
@@ -205,14 +219,16 @@ export function SearchView() {
         {/* input section */}
         <div className="mt-44 space-y-16 text-center">
           <div className="space-y-4">
-            <Tagline>{t('search.tagline')}</Tagline>
-            <Title>{t('search.title')}</Title>
+            <Tagline>{t("search.tagline")}</Tagline>
+            <Title>{t("search.title")}</Title>
           </div>
           <SearchBarInput
             onChange={setSearch}
             value={search}
             onUnFocus={setSearchUnFocus}
-            placeholder={t('search.placeholder') || "What do you want to watch?"}
+            placeholder={
+              t("search.placeholder") || "What do you want to watch?"
+            }
           />
         </div>
 
